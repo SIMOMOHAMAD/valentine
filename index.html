@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Little Surprise</title>
+    <style>
+        /* Modern, Girly, and Aesthetic CSS */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff0f3; /* Soft blush pink */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4);
+            max-width: 400px;
+            width: 90%;
+            transition: all 0.5s ease;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            height: 60px;
+            align-items: center;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            font-weight: bold;
+        }
+
+        #yesBtn {
+            background-color: #ffb3c1;
+            color: white;
+        }
+
+        #yesBtn:hover {
+            background-color: #ff8fa3;
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            background-color: #ff4d6d;
+            color: white;
+            position: absolute;
+            left: 55%; /* Starting position */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Success Message Animation */
+        .fade-in {
+            animation: fadeIn 0.8s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #message p {
+            font-size: 1.5rem;
+            color: #ff4d6d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainContainer">
+        <div id="quiz">
+            <h1>Will you be my Valentine? 🎀</h1>
+            <div class="buttons">
+                <button id="yesBtn">Yes</button>
+                <button id="noBtn">No</button>
+            </div>
+        </div>
+
+        <div id="message" class="hidden">
+            <p>Yaaay ❤️ I knew it!</p>
+            <span style="font-size: 3rem;">✨🌷🎀</span>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const quiz = document.getElementById('quiz');
+        const message = document.getElementById('message');
+
+        // Playful "No" button movement
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('click', moveButton); // For mobile touch
+
+        function moveButton() {
+            // Get random coordinates within the window
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        // Handle the "Yes" click
+        yesBtn.addEventListener('click', () => {
+            quiz.classList.add('hidden');
+            message.classList.remove('hidden');
+            message.classList.add('fade-in');
+            
+            // Optional: Confetti or background change
+            document.body.style.backgroundColor = "#ffccd5";
+        });
+    </script>
+</body>
+</html>
